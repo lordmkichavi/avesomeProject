@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var tiempos = []time.Duration{
+/*var tiempos = []time.Duration{
 	3, 4, 7, 15, 2, 4, 5, 9, 9,
 	7, 7, 7, 7, 9, 6, 9, 10, 14,
 	9, 6, 7, 6, 2, 5, 5, 9, 13,
@@ -14,6 +14,10 @@ var tiempos = []time.Duration{
 	1, 4, 7, 4, 2, 6, 5, 9, 10,
 	4, 2, 7, 5, 1, 4, 7, 13, 9,
 	8, 1, 7, 1, 2, 2, 7, 9, 10,
+}*/
+
+var tiempos = []time.Duration{
+	9, 4, 7,
 }
 
 func EjecutarDuracion(segundos time.Duration) {

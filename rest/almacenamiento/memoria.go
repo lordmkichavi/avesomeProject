@@ -1,4 +1,4 @@
-package storage
+package almacenamiento
 
 import (
 	"awesomeProject/rest/model"
@@ -39,7 +39,7 @@ func (m *Memoria) Update(ID int, person *model.Persona) error {
 	return nil
 }
 
-func (m *Memoria) Delete(ID int, person *model.Persona) error {
+func (m *Memoria) Delete(ID int) error {
 	_, existePersona := m.Personas[ID]
 	if !existePersona {
 		fmt.Errorf("ID: %d: %w", ID, model.ErrIDPersonaNoExiste)
@@ -56,10 +56,10 @@ func (m *Memoria) GetByID(ID int) (model.Persona, error) {
 	return existePersona, nil
 }
 
-func (m *Memoria) GetALL() model.Personas {
+func (m *Memoria) GetALL() (model.Personas, error) {
 	var listado model.Personas
-	for _, persona := range listado {
+	for _, persona := range m.Personas {
 		listado = append(listado, persona)
 	}
-	return listado
+	return listado, nil
 }
