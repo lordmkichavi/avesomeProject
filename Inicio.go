@@ -25,6 +25,7 @@ import (
 	patron "awesomeProject/patrones/objetonulo"
 	"awesomeProject/pruebasunitarias"
 	rest "awesomeProject/rest/cmd"
+	calculadora "awesomeProject/testmockuniotarios"
 	tour "awesomeProject/tour"
 	"awesomeProject/tour/paquetes"
 )
@@ -83,7 +84,7 @@ func main() {
 	//LlamarPatronMetodoFabrica()
 	//ProbarLlamadoPolimorfico()
 	//ProbarCambioValoresConPunteros()
-	ProbarCambiarValoresPunterosArgumento()
+	//ProbarCambiarValoresPunterosArgumento()
 	//MetodoIniciallamadosConcurrencia()
 	//MetodoInicialLlamadosRest()
 	//InicioServidorRest()
@@ -129,7 +130,65 @@ func main() {
 
 	//fmt.Println(strings.EqualFold("TRANSFER_OUT", hhh))
 
+	//pruebaJoin()
+	pruebaCalculadora()
 }
+
+func pruebaCalculadora() {
+	rectangulo := calculadora.Rectangulo{Base: 4, Altura: 7.5}
+	trapecio := calculadora.Trapecio{Base_mayor: 5, Base_menor: 2, Altura: 3}
+	fmt.Printf("Area del rectángulo: %f\n", calculadora.ObtenerArea(rectangulo))
+	fmt.Printf("Area del trapecio: %f\n", trapecio.CalcularArea())
+}
+
+type T struct {
+	Type            string `json:"type"`
+	Detail          string `json:"detail"`
+	FinancialEntity string `json:"financial_entity"`
+}
+
+func pruebaJoin() {
+	var typeFilter [2]string
+	typeFilter[0] = "fund"
+	typeFilter[1] = "expense"
+
+	var detailFilter [2]string
+	detailFilter[0] = "account_fund"
+	detailFilter[1] = "account_fund"
+
+	var financialEntityFilter [2]string
+	financialEntityFilter[0] = "crypto_transfer"
+	financialEntityFilter[1] = "crypto_transfer"
+
+	//fmt.Println(typeFilter[0])
+	//fmt.Println(typeFilter[1])
+
+	var gga, i = Find(typeFilter, "expense")
+
+	fmt.Println(gga)
+	fmt.Println(i)
+}
+
+func Find(elements [2]string, chain string) (int, bool) {
+	var containElement bool
+	var indexElement int
+	for index, element := range elements {
+		if strings.EqualFold(chain, element) {
+			indexElement = index
+			containElement = true
+		}
+	}
+	return indexElement, containElement
+}
+
+/*func Find(a []string, x string) int {
+	for i, n := range a {
+		if x == n {
+			return i
+		}
+	}
+	return len(a)
+}*/
 
 type Planet struct {
 	name       string
